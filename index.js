@@ -20,8 +20,8 @@ module.exports = function(options){
 	
 	return function($){
 		$.htmlModule = function(pathname){
-		    if(!pathname || (pathname && pathname.indexOf(/\n|\r/) != -1)){
-    			var path = pathname ? pathname : 'index.html' 
+		    if(!pathname || pathname.indexOf(/\n|\r/) === -1) {
+    			var path = pathname || 'index.html' 
     			var context = merge(clone($, false, 1), $.data)
     			var html = renderer.render(path, context)
     			$.response.end(html)
