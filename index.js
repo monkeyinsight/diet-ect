@@ -18,7 +18,7 @@ module.exports = function(options){
 		gzip: true,
 	}, options))
 	
-	return function($){
+	return function ectrender($){
 		$.htmlModule = function(pathname){
 		    if(!pathname || pathname.indexOf(/\n|\r/) === -1) {
     			var path = pathname || 'index.html' 
