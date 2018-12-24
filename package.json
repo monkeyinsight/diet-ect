@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "clone": "0.1.18",
-    "ect": "0.5.9",
+    "ect": "https://github.com/monkeyinsight/ect.git",
     "merge": "1.2.0"
   },
   "main": "index.js",
