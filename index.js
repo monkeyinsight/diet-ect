@@ -1,10 +1,10 @@
 // ECT based diet plugin for rendering Dynamic HTML files
 
 // Dependencies
-var fs = require('fs')
-var ect = require('ect')
-var merge = require('merge')
-var clone = require('clone')
+const ect = require('ect')
+const merge = require('merge')
+const clone = require('clone')
+const minify = require('html-minifier').minify;
 
 module.exports = function(options){
 	
@@ -21,9 +21,12 @@ module.exports = function(options){
 	return function ectrender($){
 		$.htmlModule = function(pathname){
 		    if(!pathname || pathname.indexOf(/\n|\r/) === -1) {
-    			var path = pathname || 'index.html' 
-    			var context = merge(clone($, false, 1), $.data)
-    			var html = renderer.render(path, context)
+    			let path = pathname || 'index.html' 
+    			let context = merge(clone($, false, 1), $.data)
+				let html = renderer.render(path, context)
+				if (options.minify) {
+					html = minify(hmtl);
+				}
     			$.response.end(html)
 			} else if (pathname) {
 			    $.response.end(pathname)
